@@ -154,7 +154,7 @@ EOF  all  create  destroy  help  quit  show  update
 No known bugs at this time. 
 
 ## Authors
-Mehdi Zitouni - [Github](https://github.com/mehdizit)
-Emna Bouaziz - [Github](https://github.com/emnabz)
+Mehdi Zitouni - [Github](https://github.com/mehdizit) :star2:
+Emna Bouaziz - [Github](https://github.com/emnabz)  :star2:  
 ## License
 Public Domain. No copy write protection. 
