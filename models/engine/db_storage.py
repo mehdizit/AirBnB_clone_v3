@@ -13,8 +13,8 @@ from models.state import State
 from models.user import User
 from os import getenv
 import sqlalchemy
-from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
+from sqlalchemy import create_engine
 
 classes = {"Amenity": Amenity, "City": City,
            "Place": Place, "Review": Review, "State": State, "User": User}
@@ -69,7 +69,7 @@ class DBStorage:
         Base.metadata.create_all(self.__engine)
         sess_factory = sessionmaker(bind=self.__engine, expire_on_commit=False)
         Session = scoped_session(sess_factory)
-        self.__session = Session
+        self.__session = Session()
 
     def close(self):
         """call remove() method on the private session attribute"""
@@ -81,7 +81,7 @@ class DBStorage:
         '''
         cls_dict = self.all(cls)
         for k, v in cls_dict.items():
-            obj = cls + '.' + id
+            obj = cls.__name__ + '.' + id
             if k == obj:
                 return(v)
         return(None)

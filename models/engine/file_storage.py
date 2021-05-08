@@ -75,7 +75,7 @@ class FileStorage:
         '''
         cls_dict = self.all(cls)
         for k, v in cls_dict.items():
-            obj = cls + '.' + id
+            obj = cls.__name__ + '.' + id
             if k == obj:
                 return(v)
         return(None)
