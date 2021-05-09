@@ -6,6 +6,7 @@ from api.v1.views import app_views
 from models import storage
 from models.state import State
 
+
 @app_views.route('/states', methods=['GET', 'POST'])
 def all_states():
     """Retrieves the list of all State objects"""
@@ -18,6 +19,7 @@ def all_states():
         new_State = State(**request.get_json())
         new_State.save()
         return make_response(jsonify(new_State.to_dict()), 201)
+
 
 @app_views.route('/states/<state_id>', methods=['GET', 'DELETE', 'PUT'])
 def state(state_id):

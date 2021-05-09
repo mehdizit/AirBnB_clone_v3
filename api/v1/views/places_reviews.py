@@ -1,4 +1,3 @@
-
 #!/usr/bin/python3
 """places_reviews handler"""
 

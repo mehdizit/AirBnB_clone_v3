@@ -59,6 +59,7 @@ def places(city_id):
         new_place.save()
         return jsonify(new_place.to_dict()), 201
 
+
 @app_views.route('/places_search', methods=['POST'])
 def places_search():
 
@@ -75,33 +76,28 @@ def places_search():
     amenities = []
     obj = request.get_json()
 
-    #get all cities from states if states passed
     for k, v in obj.items():
         if k == 'states':
             for item in v:
                 state_obj = storage.get('State', item)
                 for city in state_obj.cities:
                     res.append(city.id)
-    #add cities to existing cities list after looking through states
     for k, v in obj.items():
         if k == 'cities':
             for item in v:
                 if item not in res:
                     res.append(item)
 
-    #create amenities list if amenities passed
     for k, v in obj.items():
         if k == 'amenities':
             for item in v:
                 if item not in res:
                     amenities.append(item)
 
-    #create list of place id's from all cities
     for place in storage.all('Place').values():
         if place.city_id in res:
             places.append(place.id)
 
-    #if places is empty and amenities is not empty
     if places == [] and amenities != []:
         remove = []
         res = []
